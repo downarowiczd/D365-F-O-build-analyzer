@@ -1,0 +1,36 @@
+{
+    "manifestVersion": 1,
+    "id": "d365-f-o-build-analyzer",
+    "name": "D365 F&O Build Analyzer",
+    "version": "1.0.0",
+    "publisher": "downardo",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Analyzes the compiler and best practice output logs for warnings, informations and ToDos to provide a build summary about them. And if needed the build can be failed.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/extension-icon.png"        
+    },
+    "files": [
+        {
+            "path": "BuildAnalyzer"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "BuildAnalyzer",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "BuildAnalyzer"
+            }
+        }
+    ]
+}
