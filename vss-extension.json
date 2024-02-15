@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "d365-f-o-build-analyzer",
     "name": "D365 F&O Build Analyzer",
-    "version": "1.0.0",
+    "version": "0.1.5",
     "publisher": "downardo",
     "targets": [
         {
@@ -19,9 +19,48 @@
     "files": [
         {
             "path": "BuildAnalyzer"
-        }
+        },
+        {
+            "path": "dist",
+            "addressable": true,
+            "packagePath": "scripts"
+        },        
+        {
+            "path": "images",
+            "addressable": true          
+        },
+        {
+            "path": "buildTab.html",
+            "addressable": true
+        },
+        {
+            "path": "bestPractice.html",
+            "addressable": true
+        },                
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
+        },
+        {
+            "path": "node_modules/azure-devops-extension-sdk",
+            "addressable": true,
+            "packagePath": "lib"
+        }  
     ],
     "contributions": [
+        {
+            "id": "d365-f-o-build-analyzer-tab",
+            "type": "ms.vss-build-web.build-results-tab",
+            "description": "Information from the build analyzer task",
+            "targets": [
+                "ms.vss-build-web.build-results-view"
+            ],
+            "properties": {
+                "name": "D365 F&O build analyzer",
+                "uri": "buildTab.html"
+            }
+        },           
         {
             "id": "BuildAnalyzer",
             "type": "ms.vss-distributed-task.task",

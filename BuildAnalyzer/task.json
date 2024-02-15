@@ -1,11 +1,11 @@
 {
   "id": "e61d9300-cb89-11ee-b6f4-971e656c2670",
-  "name": "BuildAnalyzer",
-  "friendlyName": "BuildAnalyzer",
-  "description": "BuildDescription",
+  "name": "D365FOBuildAnalayzer",
+  "friendlyName": "D365F&O build analyzer",
+  "description": "Analyzes the compiler and best practice output logs for warnings, informations and ToDos to provide a build summary about them. And if needed the build can be failed",
   "author": "Dominik Downarowicz",
   "helpMarkDown": "",
-  "category": "Analyzes the compiler and best practice output logs for warnings, informations and ToDos to provide a build summary about them. And if needed the build can be failed.",
+  "category": "Build",
   "visibility": [
     "Build",
     "Release"
@@ -17,7 +17,7 @@
     "Patch": "0"
   },
   "minimumAgentVersion": "1.95.0",
-  "instanceNameFormat": "BuildAnalyzer $(message)",
+  "instanceNameFormat": "D365 F&O Build analyer",
   "inputs": [
     {
       "name": "logPath",
