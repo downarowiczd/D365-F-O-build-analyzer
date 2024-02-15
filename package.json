@@ -14,6 +14,7 @@
   "dependencies": {
     "@types/jquery": "^2.0.34",
     "@types/q": "0.0.32",
+    "azure-devops-extension-api": "^4.231.0",
     "azure-devops-extension-sdk": "^4.0.2",
     "azure-pipelines-task-lib": "^4.9.0",
     "vss-web-extension-sdk": "^5.141.0"

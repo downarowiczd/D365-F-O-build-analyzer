@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "0"
+    "Patch": "1"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "D365 F&O Build analyer",
@@ -26,6 +26,14 @@
       "defaultValue": "Test",
       "required": true,
       "helpMarkDown": "Working directory where the task can search for the compiler and best practice log files. If not set the task will use the default working directory of the build."
+    },
+    {
+      "name": "bpCheckThrowError",
+      "type": "boolean",
+      "label": "Throw error on best practice warning",
+      "defaultValue": false,
+      "required": false,
+      "helpMarkDown": "Should the task fail when BestPratice warnings where found?"
     }
   ],
   "execution": {

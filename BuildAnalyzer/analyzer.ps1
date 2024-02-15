@@ -14,23 +14,26 @@
 param()
 
 [string]$LogPath = Get-VstsInput -Name logPath
+[boolean]$BpThrowError = Get-VstsInput -Name bpCheckThrowError
+# Access System.DefaultWorkingDirectory
+$defaultWorkingDirectory = $env:SYSTEM_DEFAULTWORKINGDIRECTORY
 
-#$LogPath = "C:\Git\D365 Build Analyzer Extension Test"
+
+#$LogPath = "C:\Git\D365-F-O-build-analyzer\examples"
+#$BpThrowError = false
+
+$Header = @"
+<style>
+TABLE {border-width: 1px; border-style: solid; border-color: black; border-collapse: collapse;}
+TH {border-width: 1px; padding: 3px; border-style: solid; border-color: black; background-color: #6495ED;}
+TD {border-width: 1px; padding: 3px; border-style: solid; border-color: black;}
+</style>
+"@
 
 Clear-Host
-
-# Inputs
-$bp_throw_error = $false
-#$obsolete_throw_error = $false
-#$compiler_warning_throw_error = $false
-
-
 $results = Get-ChildItem -Path $LogPath -Filter "*.xpp*.xml" -Recurse -ErrorAction SilentlyContinue -Force
-#$objects = @()
 
-
-$bp_arr=@{}
-$bp_arr["BP_ALL_MODELS"] = @{}
+$bp_collection=@()
 
 foreach ($result in $results)
 {
@@ -52,32 +55,20 @@ foreach ($result in $results)
 
         foreach ($bestPractice in $bestPractices)
         {
-            if($bp_throw_error -eq $true)
+            if($BpThrowError -eq $true)
             {
-                Write-Host "##vso[task.logissue type=error] [$model] BestPratice Warning: $($bestPractice.Moniker) - $($bestPractice.Message)" -ForegroundColor Red
+                 Write-Host "##vso[task.logissue type=error] [$model] BestPratice Warning: $($bestPractice.Moniker) - $($bestPractice.Message)" -ForegroundColor Red
             }
             else 
             {
                 Write-Host "[$model]" -ForegroundColor Green -NoNewline ; Write-Host " BestPratice Warning: $($bestPractice.Moniker) - $($bestPractice.Message)" -ForegroundColor Yellow
             }
             
-            if($null -eq $bp_arr[$model][$bestPractice.Moniker])
-            {
-                $bp_arr[$model][$bestPractice.Moniker] = 1
-            }
-            else 
-            {
-                $bp_arr[$model][$bestPractice.Moniker]++
-            }
-
-            if($null -eq $bp_arr["BP_ALL_MODELS"][$bestPractice.Moniker])
-            {
-                $bp_arr["BP_ALL_MODELS"][$bestPractice.Moniker] = 1
-            }
-            else 
-            {
-                $bp_arr["BP_ALL_MODELS"][$bestPractice.Moniker]++
-            }
+            $Row = "" | Select-Object Model,Moniker,Message
+            $Row.Model = $model
+            $Row.Moniker = $bestPractice.Moniker
+            $Row.Message = $bestPractice.Message
+            $bp_collection += $Row
         }
     }
     catch
@@ -85,6 +76,17 @@ foreach ($result in $results)
         Write-Host "##vso[task.logissue type=error] Error during processing" -ForegroundColor Red
     }
 }
+
+#$bp_count_moniker = $bp_collection | Group-Object -Property Model, Moniker
+$bp_count_model = $bp_collection | Group-Object -Property Model
+
+
+
+# Convert the array to HTML
+$bp_count_model | ConvertTo-Html -Title "Best Practice checks" -Head $Header -Body "<h1>Best practice checks</h1>" -Property Name, Count | Out-File -FilePath $defaultWorkingDirectory/BPCheck.html
+
+
+Write-Host "##vso[task.addattachment type=buildanalyzerresult;name=bpcheck;]$defaultWorkingDirectory/BPCheck.html"
 
 
 # For more information on the Azure DevOps Task SDK:
