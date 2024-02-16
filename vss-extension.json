@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "d365-f-o-build-analyzer",
     "name": "D365 F&O Build Analyzer",
-    "version": "0.1.5",
+    "version": "0.1.14",
     "publisher": "downardo",
     "targets": [
         {
@@ -49,12 +49,7 @@
             "path": "node_modules/azure-devops-extension-sdk",
             "addressable": true,
             "packagePath": "lib"
-        },
-        {
-            "path": "node_modules/azure-devops-extension-api",
-            "addressable": true,
-            "packagePath": "lib"
-        }    
+        } 
     ],
     "contributions": [
         {

@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
-    <script>
-        window.requirejs.config({
-            enforceDefine: true,
-            paths: {
-                'SDK': './lib/SDK.min'
-            }
+    <script src="lib/VSS.SDK.min.js"></script>
+    
+    <script type="text/javascript">
+        VSS.init( { 
+            usePlatformScripts: true, 
+            moduleLoaderConfig: { 
+                paths: { "enhancer": "scripts/enhancer" } 
+            } 
         });
-
-        window.requirejs(['SDK'], function (SDK) {
-            if (typeof SDK !== 'undefined') {
-                console.log("SDK is defined. Trying to initialize...");
-                SDK.init();
-                SDK.ready().then(() => {
-                    console.log("SDK is ready");
-                    document.getElementById("name").innerText = SDK.getUser().displayName;
-
-
-
-                });
-            } else {
-                console.log('SDK is not defined');
-            }
-        });
+        
+        VSS.ready(function() {
+            require(["enhancer/tab"], function () { });
+        });   
     </script>
+    
     <style>
-        body {
-            color: white;
-            margin: 10px;    
-        }
+    .build-info {
+        padding: 10px;
+    }     
     </style>
 </head>
-<body>        
-    <h1>Hello, <span id="name"></span></h1>
-    <br/>
-    <div id="bpcheck"></div>
+
+<body>
+    <div class="build-info">
+        
+    </div>
 </body>
 </html>

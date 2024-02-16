@@ -4,7 +4,7 @@
       "moduleResolution": "node",
       "target": "es5",
       "outDir": "dist/",
-      "rootDir": "./",
+      "rootDir": "",
       "types": [
           "vss-web-extension-sdk",
           "jquery"

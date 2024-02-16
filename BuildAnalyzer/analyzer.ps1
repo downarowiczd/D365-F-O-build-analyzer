@@ -13,12 +13,15 @@
 [CmdletBinding()]
 param()
 
+
+Write-Host "Starting Build Analyzer" -ForegroundColor Green
+
 [string]$LogPath = Get-VstsInput -Name logPath
-[boolean]$BpThrowError = Get-VstsInput -Name bpCheckThrowError
+[bool]$BpThrowError = Get-VstsInput -Name bpCheckThrowError -AsBool
 # Access System.DefaultWorkingDirectory
 $defaultWorkingDirectory = $env:SYSTEM_DEFAULTWORKINGDIRECTORY
 
-
+#$defaultWorkingDirectory = "C:\Git\D365-F-O-build-analyzer\BuildAnalyzer"
 #$LogPath = "C:\Git\D365-F-O-build-analyzer\examples"
 #$BpThrowError = false
 
@@ -38,11 +41,6 @@ $bp_collection=@()
 foreach ($result in $results)
 {
     $model = $result.Name.Split(".")[2]
-
-    if($null -eq $bp_arr[$model])
-    {
-        $bp_arr[$model] = @{}
-    }
 
     try
     {
@@ -83,7 +81,11 @@ $bp_count_model = $bp_collection | Group-Object -Property Model
 
 
 # Convert the array to HTML
-$bp_count_model | ConvertTo-Html -Title "Best Practice checks" -Head $Header -Body "<h1>Best practice checks</h1>" -Property Name, Count | Out-File -FilePath $defaultWorkingDirectory/BPCheck.html
+$html = $bp_count_model | ConvertTo-Html -Title "Best Practice checks" -Head $Header -Body "<h1>Best practice checks</h1>" -Property Name, Count
+
+[System.IO.File]::WriteAllLines("$defaultWorkingDirectory/BPCheck.html", $html, [System.Text.Encoding]::UTF8)
+
+#Out-File -FilePath $defaultWorkingDirectory/BPCheck.html
 
 
 Write-Host "##vso[task.addattachment type=buildanalyzerresult;name=bpcheck;]$defaultWorkingDirectory/BPCheck.html"
