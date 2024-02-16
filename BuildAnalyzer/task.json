@@ -14,16 +14,16 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "6"
+    "Patch": "13"
   },
   "minimumAgentVersion": "1.95.0",
-  "instanceNameFormat": "D365 F&O Build analyer",
+  "instanceNameFormat": "D365 F&O Build analyzer",
   "inputs": [
     {
       "name": "logPath",
       "type": "filePath",
       "label": "Working Directory for the logfiles",
-      "defaultValue": "Test",
+      "defaultValue": "$(Build.SourcesDirectory)",
       "required": true,
       "helpMarkDown": "Working directory where the task can search for the compiler and best practice log files. If not set the task will use the default working directory of the build."
     },
@@ -34,6 +34,22 @@
       "defaultValue": false,
       "required": false,
       "helpMarkDown": "Should the task fail when BestPratice warnings where found?"
+    },
+    {
+      "name": "compilerWarningThrowError",
+      "type": "boolean",
+      "label": "Throw error on compiler warning",
+      "defaultValue": false,
+      "required": false,
+      "helpMarkDown": "Should the task fail when compiler warnings where found?"
+    },
+    {
+      "name": "obsoleteWarningThrowError",
+      "type": "boolean",
+      "label": "Throw error on obsolete warning",
+      "defaultValue": false,
+      "required": false,
+      "helpMarkDown": "Should the task fail when obsolete warnings where found?"
     }
   ],
   "execution": {

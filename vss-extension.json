@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "d365-f-o-build-analyzer",
     "name": "D365 F&O Build Analyzer",
-    "version": "0.1.14",
+    "version": "0.1.22",
     "publisher": "downardo",
     "targets": [
         {
@@ -35,11 +35,7 @@
         {
             "path": "buildTab.html",
             "addressable": true
-        },
-        {
-            "path": "bestPractice.html",
-            "addressable": true
-        },                
+        },               
         {
             "path": "node_modules/vss-web-extension-sdk/lib",
             "addressable": true,
@@ -62,6 +58,20 @@
             "properties": {
                 "name": "D365 F&O build analyzer",
                 "uri": "buildTab.html"
+            }
+        },
+        {
+            "id": "d365-f-o-build-analyzer-tab-best-practice",
+            "type": "ms.vss-build-web.build-results-section",
+            "description": "Best practice section",
+            "targets": [
+                ".d365-f-o-build-analyzer-tab"
+            ],
+            "properties": {
+                 "name": "Best practice",
+                 "uri": "bp.html",
+                 "order": 20,
+                 "height": 410
             }
         },           
         {

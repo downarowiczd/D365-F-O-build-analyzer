@@ -11,14 +11,12 @@ export class InfoTab extends Controls.BaseControl {
 		
 	public initialize(): void {
 		super.initialize();
-		console.log("InfoTab.initialize");
 		// Get configuration that's shared between extension and the extension host
 		var sharedConfig: TFS_Build_Extension_Contracts.IBuildResultsViewExtensionConfig = VSS.getConfiguration();
 		var vsoContext = VSS.getWebContext();
 		if(sharedConfig) {
 			// register your extension with host through callback
 			sharedConfig.onBuildChanged((build: TFS_Build_Contracts.Build) => {
-				this._initBuildInfo(build);	
 				
 				/*
 				* If any task uploaded some data using ##vso[task.addattachment] (https://github.com/Microsoft/vso-agent-tasks/blob/master/docs/authoring/commands.md)
@@ -29,11 +27,9 @@ export class InfoTab extends Controls.BaseControl {
 					var taskClient = DT_Client.getClient();
 					taskClient.getPlanAttachments(vsoContext.project.id, "build", build.orchestrationPlan.planId, "buildanalyzerresult").then((taskAttachments)=> {
 						$.each(taskAttachments, (index, taskAttachment) => {
-							console.log("taskAttachment", taskAttachment);
 					 		if (taskAttachment._links && taskAttachment._links.self && taskAttachment._links.self.href) {
 					 			var link = taskAttachment._links.self.href;
 					 			var attachmentName = taskAttachment.name;
-								 console.log("attachmentName", attachmentName);
 								 taskClient.getAttachmentContent(vsoContext.project.id, "build", build.orchestrationPlan.planId, taskAttachment.timelineId, taskAttachment.recordId, "buildanalyzerresult", taskAttachment.name)
 								 .then((attachmentContent) => {
 								   function arrayBufferToString(buffer) {
@@ -42,18 +38,13 @@ export class InfoTab extends Controls.BaseControl {
 									 return str;
 								   }
 								   var data = arrayBufferToString(attachmentContent);
-								   console.log("data", data);
-
 								   
 								   const decoder = new TextDecoder("utf-8");
 								   const text = decoder.decode(attachmentContent);
-
-								   console.log("text", text);
 								   
 								   var element = $("<div />");
 								   element.html(text);
 
-								   console.log("element", element.html());
 								   this._element.append(element);
 								 });
 								 
@@ -66,10 +57,6 @@ export class InfoTab extends Controls.BaseControl {
 				
 			});
 		}		
-	}
-	
-	private _initBuildInfo(build: TFS_Build_Contracts.Build) {
-		
 	}
 }
 
