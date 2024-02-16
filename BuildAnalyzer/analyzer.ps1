@@ -23,8 +23,8 @@ Write-Host "Starting Build Analyzer" -ForegroundColor Green
 # Access System.DefaultWorkingDirectory
 $defaultWorkingDirectory = $env:SYSTEM_DEFAULTWORKINGDIRECTORY
 
-$defaultWorkingDirectory = "C:\Git\D365-F-O-build-analyzer\BuildAnalyzer"
-$LogPath = "C:\Git\D365-F-O-build-analyzer\examples"
+#$defaultWorkingDirectory = "C:\Git\D365-F-O-build-analyzer\BuildAnalyzer"
+#$LogPath = "C:\Git\D365-F-O-build-analyzer\examples"
 #$BpThrowError = $false
 
 $Header = @"

@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "d365-f-o-build-analyzer",
     "name": "D365 F&O Build Analyzer",
-    "version": "0.1.22",
+    "version": "0.1.23",
     "publisher": "downardo",
     "targets": [
         {
