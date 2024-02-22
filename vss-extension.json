@@ -2,8 +2,9 @@
     "manifestVersion": 1,
     "id": "d365-f-o-build-analyzer",
     "name": "D365 F&O Build Analyzer",
-    "version": "0.1.25",
+    "version": "0.1.26",
     "publisher": "downardo",
+    "public": true,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
