@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "d365-f-o-build-analyzer",
     "name": "D365 F&O Build Analyzer",
-    "version": "0.1.26",
+    "version": "0.1.27",
     "publisher": "downardo",
     "public": true,
     "targets": [
@@ -22,7 +22,10 @@
         "theme": "dark"
     },
     "tags": [
-        "Finance and Operations"
+        "Finance and Operations",
+        "Dynamics 365",
+        "Dynamics",
+        "Build task"
     ],
     "repository": {
         "type": "git",
