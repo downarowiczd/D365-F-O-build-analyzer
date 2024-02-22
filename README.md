@@ -1,21 +1,21 @@
-# D365 F&O build analyer
+# D365 F&O BuildAnalyzer
 ![Icon](images/extension-icon.png)
-Analyzes the compiler and best practice output logs for warnings, informations and ToDos to provide a build summary about them.
+Analyzes the output logs of the compiler and best practices for warnings, information, and todos to provide a build summary about them.
 
 [![Build extension](https://github.com/downarowiczd/D365-F-O-build-analyzer/actions/workflows/buildExtension.yml/badge.svg)](https://github.com/downarowiczd/D365-F-O-build-analyzer/actions/workflows/buildExtension.yml)
 
-If wished the task will then fail on certain conditions. 
-Currently the task has three options:
-* Fail on BP check
-* Fail for compiler warnings
-* Fail for obsolete warnings
-![Build analyzer options](images/build-analyzer-options-V0.png)
+If desired, the task will then fail if certain conditions are met. 
+Currently, the task has three options:
+* Fail on a BP check
+* Fail on warnings from the compiler
+* Fail on obsolete warnings
+![Build Analyzer Options](images/build-analyzer-options-V0.png)
 
 
 
-# Build result tab
-This extension also adds a build results tab to the pipeline result page where the user can see an overview of how many occurences of BP, compiler, metadata and todo warnings are in his models. And on top of that all warnings are listed in tables under the overview. 
+# Build results tab
+This extension also adds a build results tab to the pipeline results page, where the user can see an overview of how many occurrences of BP, compiler, metadata and todo warnings there are in the models. In addition, all warnings are listed in tables below the summary. 
 
-***Please excuse me for the basic design of the result page, I'm not a web designer and I tried doing my best with my backend developer knowledge***
+***Please excuse the basic design of the result page. I'm not a web designer and tried to do my best with my backend developer knowledge.***
 
 ![Build result page](images/build-result-page.png)
