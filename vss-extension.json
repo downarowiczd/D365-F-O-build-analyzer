@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "d365-f-o-build-analyzer",
     "name": "D365 F&O Build Analyzer",
-    "version": "0.1.23",
+    "version": "0.1.25",
     "publisher": "downardo",
     "targets": [
         {
@@ -16,8 +16,51 @@
     "categories": [
         "Azure Pipelines"
     ],
+    "branding": {
+        "color": "rgb(34, 34, 34)",
+        "theme": "dark"
+    },
+    "tags": [
+        "Finance and Operations"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/downarowiczd/D365-F-O-build-analyzer"
+    },
+    "links": {
+        "support": {
+            "uri": "https://github.com/downarowiczd/D365-F-O-build-analyzer/issues"
+        },
+        "homepage": {
+            "uri": "https://downardo.at"
+        },
+        "linkedin": {
+            "uri": "https://www.linkedin.com/in/dominik-downarowicz/"
+        },
+        "license": {
+            "uri": "https://github.com/downarowiczd/D365-F-O-build-analyzer/blob/master/LICENSE"
+        },
+        "repository": {
+            "uri": "https://github.com/downarowiczd/D365-F-O-build-analyzer"
+        }
+    },
+    "badges": [
+        {
+            "href": "https://github.com/downarowiczd/D365-F-O-build-analyzer/actions/workflows/buildExtension.yml",
+            "uri": "https://github.com/downarowiczd/D365-F-O-build-analyzer/actions/workflows/buildExtension.yml/badge.svg",
+            "description": "Github build status"
+        }
+    ],
     "icons": {
         "default": "images/extension-icon.png"        
+    },
+    "content": {
+        "details": {
+            "path": "README.md"
+        },
+        "license": {
+            "path": "LICENSE"
+        }
     },
     "files": [
         {
@@ -58,20 +101,6 @@
             "properties": {
                 "name": "D365 F&O build analyzer",
                 "uri": "buildTab.html"
-            }
-        },
-        {
-            "id": "d365-f-o-build-analyzer-tab-best-practice",
-            "type": "ms.vss-build-web.build-results-section",
-            "description": "Best practice section",
-            "targets": [
-                ".d365-f-o-build-analyzer-tab"
-            ],
-            "properties": {
-                 "name": "Best practice",
-                 "uri": "bp.html",
-                 "order": 20,
-                 "height": 410
             }
         },           
         {
